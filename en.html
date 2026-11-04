@@ -42,6 +42,15 @@ a{text-decoration:none;color:inherit}
 .head .line{width:50px;height:3px;background:linear-gradient(90deg,var(--rose-light),var(--rose));margin:12px auto 0;border-radius:3px}
 
 /* PRODUCT CARDS */
+.packs-h{text-align:center;margin:34px 0 18px}.packs-h small{color:var(--rose);font-size:13px;letter-spacing:1px;display:block}.packs-h h2{font-size:22px;color:var(--cream)}
+.pack{position:relative;background:linear-gradient(160deg,#7a1d8c,#4a0a57);border:2px solid var(--rose);border-radius:26px;padding:24px 20px;margin-bottom:18px;box-shadow:0 14px 34px rgba(0,0,0,.35);text-align:center}
+.pack.star{box-shadow:0 0 0 4px rgba(224,164,135,.25),0 18px 40px rgba(0,0,0,.4)}
+.pack .badge{position:absolute;top:-13px;left:50%;transform:translateX(-50%);background:linear-gradient(135deg,var(--rose-light),var(--rose));color:var(--purple-dark);font-size:12px;font-weight:bold;padding:4px 16px;border-radius:30px;white-space:nowrap}
+.pack h3{font-size:20px;color:var(--cream);margin:6px 0 10px}
+.pack .apps{display:flex;flex-wrap:wrap;justify-content:center;gap:6px;margin-bottom:12px}
+.pack .apps span{font-size:12px;background:rgba(255,255,255,.1);border:1px solid rgba(224,164,135,.35);padding:4px 12px;border-radius:30px;color:var(--rose-light);direction:ltr}
+.pack .save{font-size:13px;color:var(--rose-light);margin-bottom:12px}
+.pack .btn{width:100%}
 .card{background:linear-gradient(160deg,var(--purple-card),#5a1068);border-radius:26px;padding:24px 20px;box-shadow:0 14px 34px rgba(0,0,0,.3);border:1px solid rgba(224,164,135,.3);margin-bottom:18px}
 .card .icon{width:56px;height:56px;border-radius:18px;background:linear-gradient(135deg,var(--rose-light),var(--rose));display:flex;align-items:center;justify-content:center;font-size:27px;margin-bottom:12px;box-shadow:0 6px 16px rgba(224,164,135,.35)}
 .card h3{font-size:19px;color:var(--cream);margin-bottom:2px}
@@ -189,6 +198,7 @@ html[dir=ltr] .faq .q{text-align:left}
   <div class="wrap">
     <div class="head"><small data-k="prodSmall"></small><h2 data-k="prodH"></h2><div class="line"></div></div>
     <div id="productList"></div>
+    <div id="packList"></div>
   </div>
 </section>
 
@@ -385,7 +395,7 @@ ar: {
  heroP:"مخططات تفاعلية للمرأة الجزائرية: الطبخ، الدار، والراحة النفسية. تثبّتيها في تليفونك (أندرويد وآيفون) وتخدم حتى بلا إنترنت.",
  heroBtn:"اكتشفي المنتجات ✨", tr1:"🌍 عربية · Français · English", tr2:"📵 تخدم أوفلاين", tr3:"🔒 للاستعمال الشخصي",
  prodSmall:"منتجاتنا", prodH:"اختاري اللي يناسبك",
- promo:"🎉 خاص بأول 10 زبائن", orderBtn:"اطلبي على واتساب 💬", orderIg:"اطلبي على إنستغرام 📸", orderFb:"اطلبي على فيسبوك 💬", tryBtn:"جرّبي معاينة مجانية 👆",
+ promo:"🎁 سعر خاص", orderBtn:"اطلبي على واتساب 💬", orderIg:"اطلبي على إنستغرام 📸", orderFb:"اطلبي على فيسبوك 💬", tryBtn:"جرّبي معاينة مجانية 👆",
  demoSmall:"جرّبي بنفسك", demoH:"معاينة تفاعلية",
  d0h:"🍲 قائمة الأسبوع", d0s:"اختاري نهار وشوفي الوجبة المقترحة", d0s2:"وقائمة المشتريات تتكوّن لوحدها 👇",
  d1h:"⏱️ مينيتور 15 دقيقة", d1s:"15 دقيقة في اليوم تكفي لدار مرتبة", d1s2:"🎯 تحدي اليوم",
@@ -439,7 +449,7 @@ fr: {
  heroP:"Des planners interactifs pour la femme algérienne : cuisine, maison et sérénité. Installez-les sur votre téléphone (Android et iPhone), ils fonctionnent même sans internet.",
  heroBtn:"Découvrir les produits ✨", tr1:"🌍 عربية · Français · English", tr2:"📵 Fonctionne hors ligne", tr3:"🔒 Usage personnel",
  prodSmall:"Nos produits", prodH:"Choisissez celui qui vous convient",
- promo:"🎉 Réservé aux 10 premiers clients", orderBtn:"Commander sur WhatsApp 💬", orderIg:"Commander sur Instagram 📸", orderFb:"Commander sur Facebook 💬", tryBtn:"Essayer un aperçu gratuit 👆",
+ promo:"🎁 Prix spécial", orderBtn:"Commander sur WhatsApp 💬", orderIg:"Commander sur Instagram 📸", orderFb:"Commander sur Facebook 💬", tryBtn:"Essayer un aperçu gratuit 👆",
  demoSmall:"Essayez par vous-même", demoH:"Aperçu interactif",
  d0h:"🍲 Menu de la semaine", d0s:"Choisissez un jour pour voir le repas proposé", d0s2:"Et la liste de courses se crée toute seule 👇",
  d1h:"⏱️ Minuteur de 15 minutes", d1s:"15 minutes par jour suffisent pour une maison rangée", d1s2:"🎯 Défi du jour",
@@ -493,7 +503,7 @@ en: {
  heroP:"Interactive planners for Algerian women: cooking, home and peace of mind. Install them on your phone (Android and iPhone) and they work even without internet.",
  heroBtn:"Discover the products ✨", tr1:"🌍 عربية · Français · English", tr2:"📵 Works offline", tr3:"🔒 Personal use",
  prodSmall:"Our products", prodH:"Pick the one that suits you",
- promo:"🎉 For the first 10 customers", orderBtn:"Order on WhatsApp 💬", orderIg:"Order on Instagram 📸", orderFb:"Order on Facebook 💬", tryBtn:"Try a free preview 👆",
+ promo:"🎁 Special price", orderBtn:"Order on WhatsApp 💬", orderIg:"Order on Instagram 📸", orderFb:"Order on Facebook 💬", tryBtn:"Try a free preview 👆",
  demoSmall:"Try it yourself", demoH:"Interactive preview",
  d0h:"🍲 This week's menu", d0s:"Pick a day to see the suggested meal", d0s2:"And the shopping list builds itself 👇",
  d1h:"⏱️ 15-minute timer", d1s:"15 minutes a day is enough for a tidy home", d1s2:"🎯 Today's challenge",
@@ -576,6 +586,37 @@ function checklist(boxId, barId, pctId, items, state) {
   upd();
 }
 
+
+// ====== الباكات (عدّليها هنا) ======
+var PACKS = [
+  { icon: "🏠", apps: ["Home Cleaning Planner", "Batch Cooking Femme Active"], old: "2800", now: "2400",
+    name: { ar: "باك الدار", fr: "Pack Maison", en: "Home Pack" } },
+  { icon: "🍲", apps: ["Home Cleaning Planner", "Cuisine Intelligente DZ"], old: "3800", now: "3200",
+    name: { ar: "باك الدار والكوزينة", fr: "Pack Maison & Cuisine", en: "Home & Kitchen Pack" } },
+  { icon: "💼", apps: ["Batch Cooking Femme Active", "Home Cleaning Planner", "Esprit Léger"], old: "4100", now: "3500",
+    name: { ar: "باك المرأة العاملة", fr: "Pack Femme Active", en: "Working Woman Pack" } },
+  { icon: "✨", apps: ["Home Cleaning Planner", "Batch Cooking Femme Active", "Cuisine Intelligente DZ", "Esprit Léger"], old: "6400", now: "5200", star: true,
+    name: { ar: "الباك الكامل", fr: "Pack Complet", en: "Complete Pack" } }
+];
+var PACKT = {
+  ar: { small: "وفّري أكثر", h: "الباكات 🎁", star: "⭐ الأكثر طلبا", save: "توفّري", cur: "دج" },
+  fr: { small: "Économisez plus", h: "Les packs 🎁", star: "⭐ Le plus demandé", save: "Vous économisez", cur: "DA" },
+  en: { small: "Save more", h: "Bundles 🎁", star: "⭐ Most popular", save: "You save", cur: "DA" }
+};
+function renderPacks() {
+  var t = T(), k = PACKT[lang], out = '<div class="packs-h"><small>' + k.small + '</small><h2>' + k.h + '</h2></div>';
+  for (var i = 0; i < PACKS.length; i++) {
+    var p = PACKS[i], apps = "", nm = p.name[lang];
+    for (var j = 0; j < p.apps.length; j++) apps += "<span>" + p.apps[j] + "</span>";
+    out += '<div class="pack' + (p.star ? ' star' : '') + '">' + (p.star ? '<div class="badge">' + k.star + '</div>' : '') +
+      '<h3>' + p.icon + ' ' + nm + '</h3><div class="apps">' + apps + '</div>' +
+      '<div class="price gold-text">' + p.now + ' ' + k.cur + ' <span class="old">' + p.old + ' ' + k.cur + '</span></div>' +
+      '<div class="save">' + k.save + ' ' + (parseInt(p.old, 10) - parseInt(p.now, 10)) + ' ' + k.cur + ' 💜</div>' +
+      (CONTACT.whatsapp ? '<a class="btn" target="_blank" href="' + LINK.wa(nm) + '">' + t.orderBtn + '</a>' : '') +
+      '<a class="btn ig" target="_blank" href="' + LINK.ig + '">' + t.orderIg + '</a></div>';
+  }
+  document.getElementById("packList").innerHTML = out;
+}
 function renderProducts() {
   var t = T(), out = "";
   for (var i = 0; i < PRODUCTS.length; i++) {
@@ -757,7 +798,7 @@ function applyLang() {
   var lb = document.querySelectorAll("#langbar button");
   for (var k = 0; k < lb.length; k++) lb[k].classList.toggle("on", lb[k].getAttribute("data-l") === lang);
   if (!thoughts) thoughts = t.thoughts.slice();
-  renderProducts(); renderDays();
+  renderProducts(); renderPacks(); renderDays();
   checklist("shop", "shopBar", "shopPct", t.shop, shopDone);
   checklist("clean", "cleanBar", "cleanPct", t.clean, cleanDone);
   renderIngs(); drawThoughts(); draw(); startLabel();
