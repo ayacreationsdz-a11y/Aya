@@ -51,6 +51,13 @@ a{text-decoration:none;color:inherit}
 .pack .apps span{font-size:12px;background:rgba(255,255,255,.1);border:1px solid rgba(224,164,135,.35);padding:4px 12px;border-radius:30px;color:var(--rose-light);direction:ltr}
 .pack .save{font-size:13px;color:var(--rose-light);margin-bottom:12px}
 .pack .btn{width:100%}
+.rev{position:relative;background:rgba(255,255,255,.07);border:1px solid rgba(224,164,135,.4);border-radius:22px;padding:26px 20px 18px;margin-bottom:16px;text-align:center}
+.rev .q{font-size:30px;line-height:1;color:var(--rose);margin-bottom:8px}
+.rev p{font-size:15px;line-height:1.9;color:var(--cream)}
+.rev .who{font-size:13px;color:var(--rose-light);margin:10px 0 8px}
+.rev .apps{display:flex;flex-wrap:wrap;justify-content:center;gap:6px}
+.rev .apps span{font-size:12px;background:rgba(255,255,255,.1);border:1px solid rgba(224,164,135,.35);padding:4px 12px;border-radius:30px;color:var(--rose-light);direction:ltr}
+.rev-note{text-align:center;font-size:12px;color:var(--soft);margin:4px 0 6px}
 .card{background:linear-gradient(160deg,var(--purple-card),#5a1068);border-radius:26px;padding:24px 20px;box-shadow:0 14px 34px rgba(0,0,0,.3);border:1px solid rgba(224,164,135,.3);margin-bottom:18px}
 .card .icon{width:56px;height:56px;border-radius:18px;background:linear-gradient(135deg,var(--rose-light),var(--rose));display:flex;align-items:center;justify-content:center;font-size:27px;margin-bottom:12px;box-shadow:0 6px 16px rgba(224,164,135,.35)}
 .card h3{font-size:19px;color:var(--cream);margin-bottom:2px}
@@ -198,6 +205,7 @@ html[dir=ltr] .faq .q{text-align:left}
   <div class="wrap">
     <div class="head"><small data-k="prodSmall"></small><h2 data-k="prodH"></h2><div class="line"></div></div>
     <div id="productList"></div>
+    <div id="reviewList"></div>
     <div id="packList"></div>
   </div>
 </section>
@@ -603,6 +611,41 @@ var PACKT = {
   fr: { small: "Économisez plus", h: "Les packs 🎁", star: "⭐ Le plus demandé", save: "Vous économisez", cur: "DA" },
   en: { small: "Save more", h: "Bundles 🎁", star: "⭐ Most popular", save: "You save", cur: "DA" }
 };
+// ====== آراء الزبونات (زيدي هنا) ======
+var REVIEWS = [
+  { apps: ["Home Cleaning Planner"],
+    t: { fr: "Après une semaine d'utilisation, un grand changement chez moi : tout est propre ✨ Même la pression, bye bye ! Je fais mes tâches avec amour, sans grand effort. Je sens que ma maison respire, et moi aussi ❤️ Le plus important : le stress a diminué.",
+         ar: "بعد سمانة من الاستعمال، تبدلت بزاف الدار عندي: كلش نقي ✨ وحتى الضغط راح! نولّي ندير الخدمة تاعي بالحب وبلا تعب كبير. نحس الدار تتنفس، وأنا تاني ❤️ والأهم: الستراس نقص.",
+         en: "After one week of use, a big change at home: everything is clean ✨ Even the pressure is gone! I do my tasks with love and without much effort. I feel my home can breathe, and so can I ❤️ Most importantly, the stress has gone down." } },
+  { apps: ["Home Cleaning Planner", "Cuisine Intelligente DZ"],
+    t: { fr: "Celle du ménage m'a aidée à réduire ma charge mentale, je n'ai qu'à appliquer le planning. Et celle de la cuisine, à moins penser à ce que je dois cuisiner et à organiser mes courses et mes recettes en fonction de ce que j'ai au frigo.",
+         ar: "تطبيق التنظيف عاونني ننقص الضغط اللي في راسي، نتبع البرنامج برك. وتطبيق الكوزينة خلاني ما نخممش بزاف واش نطيب، وننظم المشتريات والوصفات على حساب واش عندي في الفريجيدار.",
+         en: "The cleaning app helped me reduce my mental load, I just follow the plan. And the kitchen one means I think less about what to cook, and I organise my shopping and recipes around what's in my fridge." } },
+  { apps: ["Home Cleaning Planner"],
+    t: { fr: "Mon expérience a été très positive : l'application est pratique, facile à utiliser et vraiment efficace. Bravo pour ce beau travail !",
+         ar: "التجربة تاعي كانت إيجابية بزاف: التطبيق عملي، ساهل في الاستعمال، وفعّال بالصح. برافو على هاد الخدمة الزينة!",
+         en: "My experience has been very positive: the app is practical, easy to use and really effective. Well done for this beautiful work!" } },
+  { apps: ["Home Cleaning Planner"],
+    t: { fr: "L'appli est superbe et très, très agréable à utiliser, vraiment. Bravo ! Hâte de voir celle du Ramadan inchallah.",
+         ar: "التطبيق رائع وساهل وحلو بزاف في الاستعمال، بالصح. برافو! نستنى بشوق تطبيق رمضان إن شاء الله.",
+         en: "The app is superb and really, really pleasant to use. Well done! Can't wait to see the Ramadan one, inshallah." } }
+];
+var REVT = {
+  ar: { small: "آراء حقيقية", h: "واش قالو الزبونات 💜", who: "زبونة", note: "آراء وصلتنا في الرسائل، منشورة بلا أسماء ومترجمة من الفرنسية." },
+  fr: { small: "Avis réels", h: "Ce que disent nos clientes 💜", who: "Cliente", note: "Avis reçus par message, publiés sans les noms." },
+  en: { small: "Real reviews", h: "What our customers say 💜", who: "Customer", note: "Reviews received by message, published without names and translated from French." }
+};
+function renderReviews() {
+  var k = REVT[lang], out = '<div class="packs-h"><small>' + k.small + '</small><h2>' + k.h + '</h2></div>';
+  for (var i = 0; i < REVIEWS.length; i++) {
+    var r = REVIEWS[i], apps = "";
+    for (var j = 0; j < r.apps.length; j++) apps += "<span>" + r.apps[j] + "</span>";
+    out += '<div class="rev"><div class="q">❝</div><p>' + r.t[lang] + '</p>' +
+      '<div class="who">— ' + k.who + '</div>' + (apps ? '<div class="apps">' + apps + '</div>' : '') + '</div>';
+  }
+  out += '<p class="rev-note">' + k.note + '</p>';
+  document.getElementById("reviewList").innerHTML = out;
+}
 function renderPacks() {
   var t = T(), k = PACKT[lang], out = '<div class="packs-h"><small>' + k.small + '</small><h2>' + k.h + '</h2></div>';
   for (var i = 0; i < PACKS.length; i++) {
@@ -798,7 +841,7 @@ function applyLang() {
   var lb = document.querySelectorAll("#langbar button");
   for (var k = 0; k < lb.length; k++) lb[k].classList.toggle("on", lb[k].getAttribute("data-l") === lang);
   if (!thoughts) thoughts = t.thoughts.slice();
-  renderProducts(); renderPacks(); renderDays();
+  renderProducts(); renderReviews(); renderPacks(); renderDays();
   checklist("shop", "shopBar", "shopPct", t.shop, shopDone);
   checklist("clean", "cleanBar", "cleanPct", t.clean, cleanDone);
   renderIngs(); drawThoughts(); draw(); startLabel();
